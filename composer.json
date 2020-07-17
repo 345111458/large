@@ -1,0 +1,17 @@
+{
+    "name": "large\/zhengdada",
+    "description": "常用工具包",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "large",
+            "email": "759607605@qq.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Large\\Zhengdada\\": "src"
+        }
+    }
+}
