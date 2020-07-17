@@ -52,8 +52,39 @@ use Large\Zhengdada\Search\Search;
 
 public function goodsBrowseData(Request $request){
 
-    list($limit , $where , $verify , $exclude) = Search::formatWehre($request);
-
+    list($where, $verify, $exclude, $page, $limit) = Search::formatWehre($request);
+    $where      // 要查询的条件
+    $verify,    // 如果为true就用上面的条件查询
+    $exclude,   // 过滤字段，自己处理
+    $page,      // 当前页面
+    $limit      // 查询多少条数据
+    
+    #### 返回一个数组 ，5个参数，如下格式
+    Array
+    (
+        [0] => Array
+            (
+                [0] => Array
+                    (
+                        [0] => goods_name
+                        [1] => LIKE
+                        [2] => %苹果%
+                    )
+                [1] => Array
+                    (
+                        [0] => price
+                        [1] => >
+                        [2] => 3999
+                    )
+            )
+        [1] => 1
+        [2] => Array
+            (
+                [created_at] => 2019-12-12 / 2019-12-29
+            )
+        [3] => 1
+        [4] => 10
+    )
 ```  
 2 . 传入参数格式
 ```$xslt
@@ -91,6 +122,8 @@ excludeField:{
     created_at:true,
 }
 ```
+
+
 ## 结束
 
 

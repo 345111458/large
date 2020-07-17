@@ -26,7 +26,7 @@ class Search extends Functions
     {
         $page           =   @$arr['page'] ? $arr['page'] : 1;// 当前第几页
         $limit          =   @$arr['limit'] ? $arr['limit'] : 10;// 一次查询多少条数据
-        $parame         =   !empty(@$arr['parame']) ? $arr['parame'] : [];// 要进行搜索的字段
+        $parame         =   !empty($arr['parame']) ? $arr['parame'] : [];// 要进行搜索的字段
         $condition      =   !empty($arr['condition']) ? $arr['condition'] : [];// 字段搜索方式
         $excludeField   =   @$arr['exclude_field'] ? array_keys($arr['exclude_field']) : [];// 过滤不须要查询的字段
 
@@ -48,8 +48,9 @@ class Search extends Functions
                 $verify = true;
             }
 
-            $condition = !empty(@$condition[$k]) ? $condition[$k] : '%*%';
-            switch (strtolower($condition)){
+            $newCon = !empty(@$condition[$k]) ? @$condition[$k] : '%*%';
+
+            switch (strtolower($newCon)){
                 case '=':
                     $where[] = [$k , '=' , $v];
                     break;
@@ -80,7 +81,7 @@ class Search extends Functions
                     break;
             }
         }
-        return [$limit , $where , $verify , $exclude ,$page];
+        return [$where, $verify, $exclude, $page, $limit];
     }
 
 }
