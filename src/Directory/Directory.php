@@ -34,7 +34,7 @@ class Directory extends Functions
 
             if(@mkdir($dir,$chmod)){
                 //echo $dir."创建成功<br>";
-            } //再次试图创建子目录,成功输出目录名
+            } //再次试图创建子目录,成功输出目录名 111111
         }
         return $dir;
     }
