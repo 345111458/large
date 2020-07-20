@@ -10,5 +10,5 @@
 return [
     'appid' =>  env('BAIDU_APPID'),
     'key' =>  env('BAIDU_KEY'),
-    'str' =>  env('BAIDU_STR' , '-'),
+    'str' =>  env('BAIDU_STR'),
 ];

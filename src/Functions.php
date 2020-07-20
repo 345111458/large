@@ -234,12 +234,14 @@ class Functions
 
 
     /***
-     * @param $text
+     * @param $find 要查找的值
+     * @param $replace 替换的内容
+     * @param $text 替换的数据
      * @return mixed|void 字串替换
      */
-    protected function strReplace($text , $string)
+    protected function strReplace($find, $replace, $text)
     {
-        return str_replace(" ", $string, $text);
+        return str_replace($find, $replace, $text);
     }
 
 

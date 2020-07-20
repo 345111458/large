@@ -127,4 +127,49 @@ excludeField:{
 ## 结束
 
 
+
+## 新增百度翻译 方法
+
+1 . 发布配置文件----如果是laravel框架可以执行这一步，其它框架不用
+
+```
+php artisan vendor:publish --provider="Large\Zhengdada\ServiceProvider\BaiduTranslateServiceProvider"  
+
+.env 文件添加配置参数
+BAIDU_APPID=2019050xxxxxxxxxx
+BAIDU_KEY=urzK81jxxxxxxxxxxxx
+
+```
+
+2 . 调用方法
+```
+laravel 框架调用方式
+翻译英文
+echo app('baidu')->translate('魂牵梦萦' , '-');
+返回格式： Haunted-by-dreams
+
+翻译拼音
+echo app('baidu')->pinyin('魂牵梦萦' , '-');
+返回格式： qian-hun-men-yin
+
+
+
+其它框架调用方式
+use Large\Zhengdada\BaiduTranslate\BaiduTranslate;
+$res = new BaiduTranslate(['appid'=>'xxxxx','key'=>'xxxxxx']);
+$res->translate('魂牵梦萦','-');
+返回格式： Haunted-by-dreams
+
+翻译拼音
+echo $res->pinyin('魂牵梦萦' , '-');
+返回格式： qian-hun-men-yin
+
+
+```
+
+
+## 结束
+
+
+
 MIT
