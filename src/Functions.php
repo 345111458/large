@@ -233,4 +233,14 @@ class Functions
     }
 
 
+    /***
+     * @param $text
+     * @return mixed|void 字串替换
+     */
+    protected function strReplace($text , $string)
+    {
+        return str_replace(" ", $string, $text);
+    }
+
+
 }
