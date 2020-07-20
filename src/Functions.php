@@ -198,12 +198,12 @@ class Functions
     /**
      * 把一个数组进行树形结构排序（使用迭代的方式来实现）数据排序的方式是：merge
      * @param array $data 传入大数组
-     * @param int $id 要查询的父ID
+     * @param int $id 要查询的父ID值
      * @param int $level  层级
      * @param string $column 父ID字段
      * @return array 返回一个数组
      */
-    public static function getTreeData($data, int $id = 0, int $level = 1, $column = 'pid', $join = '----') :array
+    public static function getTreeData($data, $column='pid', $id=0, $level = 1, $join = '----') :array
     {
         $ids = [$id];  // 父id列表
         $treeData = [];  // 要返回的数组
@@ -231,6 +231,6 @@ class Functions
         }
         return $treeData;  // 返回按照树形结构排序以后的数据
     }
-    
+
 
 }
