@@ -34,11 +34,11 @@ class BaiduTranslateServiceProvider extends ServiceProvider
     {
         // 发布配置文件
         $this->publishes([
-            __DIR__ . '/../BaiduTranslate/config.php' => config_path('baidu_translate.php'),
+            __DIR__ . '/../BaiduTranslate/config.php' => config_path('baidu_translate.php'), // 要创建配置文件的文件
         ], 'config');
 
         // 将扩展包默认配置和应用的已发布副本配置合并在一起
-        $this->mergeConfigFrom( __DIR__ . '/../BaiduTranslate/config.php', 'baidu_translate');
+        $this->mergeConfigFrom( __DIR__ . '/../BaiduTranslate/config.php', 'services');// 感觉没有什么用
 
         // 注册扩展包的 Artisan 命令
 //        if ($this->app->runningInConsole()) {
