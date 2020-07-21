@@ -246,7 +246,7 @@ class Functions
 
 
     /***
-     * 通过 映射调用类的私有方法
+     * 通过映射 调用类的私有方法
      * @param $class 传入类名
      * @param $method 要调用的方法名
      * @param string $param 调用的方法传入的参数
@@ -260,4 +260,7 @@ class Functions
 
         return $response->invoke($newClass , ...$param); // 执行方法
     }
+
+
+
 }
