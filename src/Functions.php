@@ -246,7 +246,7 @@ class Functions
 
 
     /***
-     * 通过映射 调用类的私有方法
+     * 通过反射 调用类的私有方法
      * @param $class 传入类名
      * @param $method 要调用的方法名
      * @param string $param 调用的方法传入的参数
