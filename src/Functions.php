@@ -245,4 +245,19 @@ class Functions
     }
 
 
+    /***
+     * 通过 映射调用类的私有方法
+     * @param $class 传入类名
+     * @param $method 要调用的方法名
+     * @param string $param 调用的方法传入的参数
+     * @return mixed  返回调用方法的数据
+     */
+    protected function reflectionMethod($class, $method, ...$param)
+    {
+        $newClass = new $class;
+        $response = new reflectionMethod($newClass, $method);
+        $response->setAccessibe(true);// 是否执行方法
+
+        return $response->invoke($newClass , ...$param); // 执行方法
+    }
 }
