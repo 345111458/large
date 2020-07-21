@@ -189,5 +189,23 @@ $res = Functions::getTreeData($data, $id=0,$column='pid');
 ## 结束
 
 
+##  生成一个邮箱验证的token值
+1. 调用方式
+ ```
+use Large\Zhengdada\Functions;
+$res = Functions::getEmailVerifyToken(array $data, $join = '-')
+
+```
+## 结束
+
+
+##  生成一个随机的数字字符串
+1. 调用方式
+ ```
+use Large\Zhengdada\Functions;
+$res = Functions::getRandomNumCode($length = 6)
+
+```
+## 结束
 
 MIT
