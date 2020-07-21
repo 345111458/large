@@ -168,12 +168,12 @@ class Functions
     /**
      * 计算自身下的所有会员,返回所有ID
      * @param $members
-     * @param $mid
+     * @param $id
      * @param $times 传过来的时间
      */
-    function GetMemberTeamId($members, $mid , $times = ''){
-        $Teams = array($mid);//最终结果
-        $mids = array($mid);//第一次执行时候的用户id
+    protected function getMemberTeamId($members, $id , $times = ''){
+        $Teams = array($id);//最终结果
+        $mids = array($id);//第一次执行时候的用户id
         do{
             $othermids = array();
             $state = false;
@@ -203,7 +203,7 @@ class Functions
      * @param string $column 父ID字段
      * @return array 返回一个数组
      */
-    public static function getTreeData($data, $column='pid', $id=0, $level = 1, $join = '----') :array
+    public static function getTreeData($data, $id=0,$column='pid', $level = 1, $join = '----') :array
     {
         $ids = [$id];  // 父id列表
         $treeData = [];  // 要返回的数组

@@ -164,10 +164,28 @@ $res->translate('魂牵梦萦','-');
 echo $res->pinyin('魂牵梦萦' , '-');
 返回格式： qian-hun-men-yin
 
+```
+## 结束
+
+
+
+##  查询自身下所有会员 ID 方法
+1. 调用方式
+ ```
+use use Large\Zhengdada\Functions;
+$res = Functions::getMemberTeamId($members, $id);
 
 ```
+## 结束
 
 
+##  把一个数组进行树形结构排序（使用迭代的方式来实现）数据排序的方式是：merge
+1. 调用方式
+ ```
+use Large\Zhengdada\Functions;
+$res = Functions::getTreeData($data, $id=0,$column='pid');
+
+```
 ## 结束
 
 
