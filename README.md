@@ -208,4 +208,16 @@ $res = Functions::getRandomNumCode($length = 6)
 ```
 ## 结束
 
+
+##  通过映射 调用类的私有方法
+1. 调用方式
+ ```
+use Large\Zhengdada\Functions;
+$res = Functions::reflectionMethod($class, $method, ...$param)
+
+```
+## 结束
+
+
+
 MIT
