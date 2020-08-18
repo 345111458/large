@@ -214,9 +214,14 @@ class Functions
      * @param string $column 父ID字段
      * @return array 返回一个数组
      */
-    public static function getTreeData($data, $id=0,$column='pid', $level = 1, $join = '----') :array
+    public static function getTreeData($data, $id=0,$column='pid', $type = 1, $level = 1, $join = '----') :array
     {
         $ids = [$id];  // 父id列表
+        $arr = [];
+        if ($type == 1){
+            $arr = $data->where('id', $id)->first()->toArray();
+            $arr['level'] = 0;
+        }
         $treeData = [];  // 要返回的数组
         while ($ids) {  // 判断父id列表是否为空，如果为空就停止循环
             $pid = end($ids);  // 获取父id列表中最后一个元素
