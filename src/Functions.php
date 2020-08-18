@@ -164,6 +164,17 @@ class Functions
     }
 
 
+    /***
+     * @param $symbol 分割符号
+     * @param $string 分割字符串
+     * @return array|void 字符串分割成 一个数组
+     */
+    protected function explodeString($symbol , $string){
+
+        return explode($symbol , $string);
+    }
+
+
 
     /**
      * 计算自身下的所有会员,返回所有ID
