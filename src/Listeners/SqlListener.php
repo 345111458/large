@@ -41,6 +41,6 @@ class SqlListener
         }
 
         // 记录日志/ 2M 分割一次日志
-        Logs::mkLogFile('dataLog/sql' , $log);
+        Logs::mkLogFile('dataLog/sql/'.date('Ymd') , $log);
     }
 }
