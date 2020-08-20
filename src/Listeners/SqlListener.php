@@ -40,7 +40,8 @@ class SqlListener
             }
         }
 
+        $path = public_path() . '/dataLog/sql/'.date('Ymd');
         // 记录日志/ 2M 分割一次日志
-        Logs::mkLogFile('dataLog/sql/'.date('Ymd') , $log);
+        Logs::mkLogFile($path, $log);
     }
 }
