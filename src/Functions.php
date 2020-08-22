@@ -75,6 +75,20 @@ class Functions
     }
 
 
+    /***
+     * 生成一个随机的数字字符串
+     */
+    protected function getRandomNumCode($length = 6)
+    {
+        $code = '';
+        for ($i = 0; $i < $length; $i ++) {
+            $randNum = random_int(0, 9);
+            $code .= $randNum;
+        }
+        return $code;
+    }
+
+
 
 
 
