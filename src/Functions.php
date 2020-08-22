@@ -35,7 +35,7 @@ class Functions
 
         // 把文件大小设置成 M ,如果大于M 就拷贝一份,在删除文件
         if (round($fileSize / 1024 * 100) > $size){
-            copy($fiel , $fiel.'_'. date('His'));
+            copy($fiel, '_'. date('His'). $fiel);
             unlink($fiel);
         }
     }

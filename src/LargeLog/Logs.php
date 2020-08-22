@@ -27,7 +27,7 @@ class Logs extends Functions
 
         // 不是目录，创建一个
         if (!file_exists($dir)){
-            $dir = Directory::mkdirs($dir , 0755);
+            $dir = Directory::mkdirs($dir , 0777);
         }
 
         // 设置需保存的文件目录
