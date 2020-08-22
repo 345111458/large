@@ -127,4 +127,97 @@ excludeField:{
 ## 结束
 
 
+
+## 新增百度翻译 方法
+
+1 . 发布配置文件----如果是laravel框架可以执行这一步，其它框架不用
+
+```
+php artisan vendor:publish --provider="Large\Zhengdada\ServiceProvider\BaiduTranslateServiceProvider"  
+
+.env 文件添加配置参数
+BAIDU_APPID=2019050xxxxxxxxxx
+BAIDU_KEY=urzK81jxxxxxxxxxxxx
+
+```
+
+2 . 调用方法
+```
+laravel 框架调用方式
+翻译英文
+echo app('baidu')->translate('魂牵梦萦' , '-');
+返回格式： Haunted-by-dreams
+
+翻译拼音
+echo app('baidu')->pinyin('魂牵梦萦' , '-');
+返回格式： qian-hun-men-yin
+
+
+
+其它框架调用方式
+use Large\Zhengdada\BaiduTranslate\BaiduTranslate;
+$res = new BaiduTranslate(['appid'=>'xxxxx','key'=>'xxxxxx']);
+$res->translate('魂牵梦萦','-');
+返回格式： Haunted-by-dreams
+
+翻译拼音
+echo $res->pinyin('魂牵梦萦' , '-');
+返回格式： qian-hun-men-yin
+
+```
+## 结束
+
+
+
+##  查询自身下所有会员 ID 方法
+1. 调用方式
+ ```
+use use Large\Zhengdada\Functions;
+$res = Functions::getMemberTeamId($members, $id);
+
+```
+## 结束
+
+
+##  把一个数组进行树形结构排序（使用迭代的方式来实现）数据排序的方式是：merge
+1. 调用方式
+ ```
+use Large\Zhengdada\Functions;
+$res = Functions::getTreeData($data, $id=0,$column='pid');
+
+```
+## 结束
+
+
+##  生成一个邮箱验证的token值
+1. 调用方式
+ ```
+use Large\Zhengdada\Functions;
+$res = Functions::getEmailVerifyToken(array $data, $join = '-')
+
+```
+## 结束
+
+
+##  生成一个随机的数字字符串
+1. 调用方式
+ ```
+use Large\Zhengdada\Functions;
+$res = Functions::getRandomNumCode($length = 6)
+
+```
+## 结束
+
+
+##  通过反射 调用类的私有方法
+1. 调用方式
+ ```
+use Large\Zhengdada\Functions;
+$res = Functions::reflectionMethod($class, $method, ...$param)
+
+```
+## 结束
+
+
+
 MIT

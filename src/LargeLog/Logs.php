@@ -21,7 +21,7 @@ class Logs extends Functions
      * @param $log  日志数据
      * @param int $size 日志文件大小
      */
-    protected function mkLogFile($dir, $log = '', $size = 3){
+    protected function mkLogFile($dir, $log = '', $size = 5){
 
         $logs = '[' . date('Y-m-d H:i:s') . '] ' . $log . "\r\n";
 
