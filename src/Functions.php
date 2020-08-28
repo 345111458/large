@@ -34,8 +34,8 @@ class Functions
         $fileSize = filesize($fiel); // 获取文件大小
 
         // 把文件大小设置成 M ,如果大于M 就拷贝一份,在删除文件
-        if (round($fileSize / 1024 * 100) / 1024 > $size){
-            copy($fiel , $fiel.'_'. date('His'));
+        if (round($fileSize / 1024 ) / 1024 > $size){
+            copy($fiel, '_'. date('His'). $fiel);
             unlink($fiel);
         }
     }
@@ -76,6 +76,7 @@ class Functions
 
 
     /***
+     * 生成一个随机的数字字符串
      * @param int $length 字串长度
      * @return string
      * @throws \Exception 生成一个随机的数字字符串
@@ -89,6 +90,7 @@ class Functions
         }
         return $code;
     }
+
 
 
     /***
@@ -272,8 +274,6 @@ class Functions
 
         return $response->invoke($newClass , ...$param); // 执行方法
     }
-
-
 
 
 }

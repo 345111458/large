@@ -21,13 +21,13 @@ class Logs extends Functions
      * @param $log  日志数据
      * @param int $size 日志文件大小
      */
-    protected function mkLogFile($dir, $log = '', $size = 3){
+    protected function mkLogFile($dir, $log = '', $size = 5){
 
         $logs = '[' . date('Y-m-d H:i:s') . '] ' . $log . "\r\n";
 
         // 不是目录，创建一个
         if (!file_exists($dir)){
-            $dir = Directory::mkdirs($dir , 0755);
+            $dir = Directory::mkdirs($dir , 0777);
         }
 
         // 设置需保存的文件目录
