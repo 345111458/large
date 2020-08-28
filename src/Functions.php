@@ -223,7 +223,7 @@ class Functions
             $pid = end($ids);  // 获取父id列表中最后一个元素
             $isDelete = true;  // 默认值为true，当$data数组为空的时候，会删除$ids里面多余的值
             foreach ($data as $k => $value) {
-                if ($value[$column] === $pid) {  // 判断该值里面的pid是不是等于父id列表里面的最后一个元素，如果是就进行入栈操作
+                if ($value[$column] == $pid) {  // 判断该值里面的pid是不是等于父id列表里面的最后一个元素，如果是就进行入栈操作
                     $value['level'] = $level;  // 写入层次到当前数据里面
                     if (isset($value['name'])) {
                         $value['name'] = ($join ? '|' : '') . str_repeat($join, $value['level']) . $value['name'];
