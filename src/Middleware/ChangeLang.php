@@ -11,6 +11,21 @@ use Illuminate\Support\Facades\Cookie;
 
 class ChangeLang
 {
+
+
+//      \App\Http\Kernel.php  $middlewareGroups = []  文件里设置以下内容
+//      \Large\Zhengdada\Middleware\ChangeLang::class,
+
+
+//    // 设置语言 路由设置
+//    Route::get('lang/{lang}', function($lang){
+//        $newLang = strtolower($lang);
+//        if (in_array($newLang , \Config('app.locales'))){
+//            Cookie::queue('language' , $newLang);
+//        }
+//        return redirect()->back();
+//    });
+
     /**
      * Handle an incoming request.
      *
