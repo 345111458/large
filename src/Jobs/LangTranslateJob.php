@@ -7,8 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Large\Zhengdada\BaiduTranslate;
-
+use Large\Zhengdada\BaiduTranslate\BaiduTranslate;
 
 
 class LangTranslateJob implements ShouldQueue
