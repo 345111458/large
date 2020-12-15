@@ -94,7 +94,7 @@ class Functions
 
 
     /***
-     * @param $fileSize 文件路径
+     * @param $fileSize | float 文件路径
      * @return float|int|string 返回文件在大小
      */
     protected function convertFileSize($fileSize)
@@ -167,8 +167,8 @@ class Functions
 
 
     /***
-     * @param $symbol 分割符号
-     * @param $string 分割字符串
+     * @param $symbol | type 分割符号
+     * @param $string | string 分割字符串
      * @return array|void 字符串分割成 一个数组
      */
     protected function explodeString($symbol , $string){
