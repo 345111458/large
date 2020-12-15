@@ -3,6 +3,7 @@
 namespace Large\Zhengdada\Regulars;
 
 use Overtrue\Pinyin\Pinyin;
+use Large\Zhengdada\Functions;
 
 
 class LanguageReplace
@@ -51,12 +52,17 @@ class LanguageReplace
             $result = $pinyin->abbr($str[1], PINYIN_KEEP_NUMBER);
             $strlen = $this->langLen - strlen($result);
             //语言包格式定义
-            if (strlen($result) >= $this->langLen && $strlen < 0) {
+            if (strlen($result) >= $this->langLen && $strlen <= 0) {
                 // 拼音长度为8
                 $str_pad = strtoupper(substr($result, 0, $this->langLen));
             } else {
-                // 拼音长度不够8位，右边补X
-                $str_pad = strtoupper(str_pad($result, $this->langLen, 'x', STR_PAD_RIGHT));
+                if (strlen($result) == 0){
+                    // 拼音长度不够8位，右边补X
+                    $str_pad = strtoupper(str_pad($result, $this->langLen, 'x'));
+                }else{
+                    // 拼音长度不够8位，右边补X
+                    $str_pad = strtoupper($result . Functions::getRandomNumCode($strlen));
+                }
             }
             // 拼接语言包
             $string = '"'.$newKey.$str_pad.'"'.'    =>  "'.$str[1].'",';
@@ -69,8 +75,8 @@ class LanguageReplace
         // 把替换后的文件写入一个新文件里
         file_put_contents($url."test.blade.php", $content);
 
-//        // 打印出来看看结果
-//        dd($content);
+        // 打印出来看看结果
+        dd($content);
     }
 
 
