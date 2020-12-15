@@ -12,6 +12,7 @@ use Large\Zhengdada\Functions;
 use Overtrue\Pinyin\Pinyin;
 use GuzzleHttp\Client;
 
+
 class BaiduTranslate extends Functions
 {
 
@@ -73,7 +74,7 @@ class BaiduTranslate extends Functions
             return $result['trans_result'][0]['dst'];
         } else {
             // 如果百度翻译没有结果，使用拼音作为后备计划。
-            return self::pinyin($text , $replace);
+            return self::pinyin($text , $replace) . '_11111111111';
         }
     }
 
