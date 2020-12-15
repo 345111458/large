@@ -49,8 +49,9 @@ class LanguageReplace
             $newKey = $this->langPrefix;
             // 把汉字转换成拼音首字母
             $result = $pinyin->abbr($str[1], PINYIN_KEEP_NUMBER);
+            $strlen = $this->langLen - strlen($result);
             //语言包格式定义
-            if (strlen($result) >= $this->langLen) {
+            if (strlen($result) >= $this->langLen && $strlen < 0) {
                 // 拼音长度为8
                 $str_pad = strtoupper(substr($result, 0, $this->langLen));
             } else {
