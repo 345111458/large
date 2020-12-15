@@ -22,7 +22,7 @@ class LanguageReplace
      * @param $langPrefix  | string 语言包Key前缀
      * @param $langLen     | string 语言包Key长度
      */
-    public function __construct($url, $fileName, $langPrefix = 'xxxxxx', $langLen = 8)
+    public function __construct($url, $fileName, $langPrefix = 'XXXXXX_', $langLen = 8)
     {
         $this->url        = $url;
         $this->fileName   = $fileName;
@@ -60,7 +60,7 @@ class LanguageReplace
             // 拼接语言包
             $string = '"'.$newKey.$str_pad.'"'.'    =>  "'.$str[1].'",';
             // 把要替换的语言包写入一个文件
-            file_put_contents(__DIR__.'/../resources/lang/zh/test1.php', $string.PHP_EOL, FILE_APPEND);
+            file_put_contents(resource_path().'/lang/zh/test1.php', $string.PHP_EOL, FILE_APPEND);
             // 最终页面替换后的语言包格式
             return ">{{ trans('".$newKey.$str_pad."') }}<";
         }, $file_data);
