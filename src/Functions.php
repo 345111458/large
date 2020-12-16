@@ -92,6 +92,19 @@ class Functions
     }
 
 
+    /**
+     * @param $str | 获取数组 里的K 和 V
+     * 返回  K V
+     */
+    protected function getArrayKeyToValue($str){
+
+        if(!is_array($str)){
+            return ['' , $str];
+        }
+        return [array_keys($str)[0] , array_values($str)[0]];
+    }
+
+
 
     /***
      * @param $fileSize | float 文件路径
