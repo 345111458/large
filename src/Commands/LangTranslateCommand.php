@@ -65,6 +65,5 @@ abstract class LangTranslateCommand extends Command
             \Cache::put('type', 0);
         }
 
-        //
     }
 }

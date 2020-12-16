@@ -38,11 +38,15 @@ class LangTranslateJob implements ShouldQueue
      */
     public function handle()
     {
-        $baidu = new BaiduTranslate($this->lang);
+        $baidu   = new BaiduTranslate($this->lang);
         $results = Functions::getArrayKeyToValue($this->str);
-        $result  = '"'.$results[0].'"'.'   =>  '.
-            '"'.$baidu->translate($results[1]).'",';
-
+        $result  = '"'.$results[0].'"'.'   =>  ';
+        $str     = explode('_', $results[0]);
+        if (is_numeric($str[1])) {
+            $result .= '"'.$results[1].'",';
+        } else {
+            $result .= '"'.$baidu->translate($results[1]).'",';
+        }
 
         $dir = resource_path('lang/zh').'/en1111111.php';// 创建目录
 
