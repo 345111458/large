@@ -21,10 +21,9 @@ class LangTranslateJob implements ShouldQueue
 
     /**
      * Create a new job instance.
-     *
      * @return void
      */
-    public function __construct($str, $lang = 'en', $ttl = 5)
+    public function __construct($str, $lang = 'en', $ttl = 1)
     {
         $this->str  = $str;
         $this->lang = $lang;
@@ -35,7 +34,6 @@ class LangTranslateJob implements ShouldQueue
 
     /**
      * Execute the job.
-     *
      * @return void
      */
     public function handle()

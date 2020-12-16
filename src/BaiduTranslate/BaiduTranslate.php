@@ -24,15 +24,9 @@ class BaiduTranslate extends Functions
 
     public function __construct($toLang = 'en')
     {
-        $arr = [
-            'appid' => env('BAIDU_APPID'),
-            'key'   => env('BAIDU_KEY'),
-            'str'   => env('BAIDU_STR'),
-        ];
-
-        $this->appid   = $arr['appid'];
-        $this->key     = $arr['key'];
-        $this->str     = $arr['str'];
+        $this->appid   = env('BAIDU_APPID');
+        $this->key     = env('BAIDU_KEY');
+        $this->str     = env('BAIDU_STR');
         $this->to_lang = $toLang;
 
         // 实例化 HTTP 客户端
@@ -82,6 +76,7 @@ class BaiduTranslate extends Functions
             return $result['trans_result'][0]['dst'];
         } else {
             // 如果百度翻译没有结果，使用拼音作为后备计划。
+            return $text.'_11111111111';
             return self::pinyin($text, $replace).'_11111111111';
         }
     }
