@@ -30,6 +30,13 @@ abstract class LangTranslateCommand extends Command
     abstract protected function setTtl();
 
     /**
+     * 判断当着是不是要运行任务
+     * return false 不运行任务
+     * @return mixed
+     */
+    abstract protected function verifyType();
+
+    /**
      * Create a new command instance.
      * @return void
      */
@@ -44,6 +51,8 @@ abstract class LangTranslateCommand extends Command
      */
     public function handle()
     {
+        $this->verifyType();
+
         if (!$lang = $this->argument('lang')) {
             \Cache::put('type', 0);
             return false;
