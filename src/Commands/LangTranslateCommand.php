@@ -51,10 +51,14 @@ abstract class LangTranslateCommand extends Command
      */
     public function handle()
     {
-        $this->verifyType();
+        if (!$this->verifyType()){
+            $this->error('type: ' . 0);
+            return false;
+        }
 
         if (!$lang = $this->argument('lang')) {
             \Cache::put('type', 0);
+            $this->error('lang: null');
             return false;
         }
         $data = \Cache::remember('langTranslate', $this->setTtl(), function () {
