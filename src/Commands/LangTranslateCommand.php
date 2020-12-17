@@ -58,6 +58,7 @@ abstract class LangTranslateCommand extends Command
 
         if (!$lang = $this->argument('lang')) {
             \Cache::put('type', 0);
+            \Cache::put('langTranslate', null);
             $this->error('lang: null');
             return false;
         }
@@ -75,6 +76,7 @@ abstract class LangTranslateCommand extends Command
                 break;
             }
         } else {
+            \Cache::put('langTranslate', null);
             \Cache::put('type', 0);
         }
 
