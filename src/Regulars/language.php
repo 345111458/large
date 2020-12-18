@@ -42,27 +42,30 @@ class LanguageReplace
         # 把文件读进来
         $file_data = file_get_contents($file_path);
         # 正则规则
-        $rules = '/>(.*?)</';
+        $rules = '/>([\s\S]*?)</';
         # 把要替换的内容放这里替换
         $content = preg_replace_callback($rules, function ($str) use ($pinyin) { // $aa 是匹配到的内容
             // 语言包前缀
             $newKey = $this->langPrefix;
+            $str[1] = str_replace("\n","",$str[1]);
+            $str[1] = trim($str[1]);
             // 把汉字转换成拼音首字母
             $result = $pinyin->abbr($str[1], PINYIN_KEEP_ENGLISH);
-            if ($result == "") {
-                $result = $pinyin->abbr($str[1], PINYIN_KEEP_NUMBER);
-            }
             //语言包格式定义
             if (strlen($result) >= $this->langLen) {
                 // 拼音长度为8
                 $str_pad = strtoupper(substr($result, 0, $this->langLen));
             } else {
-                if ($result == "") {
-                    $str_pad = strtoupper(str_pad($result, $this->langLen, 'x', STR_PAD_RIGHT));
-                } else {
-                    // 拼音长度不够8位，右边补X
-                    $str_pad = strtoupper(str_pad($result, $this->langLen, mt_rand(), STR_PAD_RIGHT));
-                }
+                // 拼音长度不够8位，右边补X
+//                if ($result == "") {
+//                    $str_pad = strtoupper(str_pad($result, $this->langLen, 'x', STR_PAD_RIGHT));
+//                } else
+
+                $str_pad = strtoupper(str_pad($result, $this->langLen, mt_rand(), STR_PAD_RIGHT));
+
+            }
+            if (empty($result)) {
+                return ">".$str[1]."<";
             }
             // 拼接语言包
             $string = '"'.$newKey.$str_pad.'"'.'    =>  "'.$str[1].'",';
