@@ -24,9 +24,9 @@ class BaiduTranslate extends Functions
 
     public function __construct($toLang = 'en')
     {
-        $this->appid   = env('BAIDU_APPID');
-        $this->key     = env('BAIDU_KEY');
-        $this->str     = env('BAIDU_STR');
+        $this->appid   = config('baidu_translate.appid');
+        $this->key     = config('baidu_translate.key');
+        $this->str     = config('baidu_translate.str');
         $this->to_lang = $toLang;
 
         // 实例化 HTTP 客户端
