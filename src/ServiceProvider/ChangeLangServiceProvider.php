@@ -48,7 +48,7 @@ class ChangeLangServiceProvider extends ServiceProvider
          * 如果扩展包包含路由，可以使用 loadRoutesFrom 方法加载它们
          * @return void
          */
-        $this->loadRoutesFrom(dirname(__DIR__).'/Routes/routeLang.php');
+        // $this->loadRoutesFrom(dirname(__DIR__).'/Routes/routeLang.php');
 
 
         //如果你的扩展包包含数据库迁移，可以使用 loadMigrationsFrom 方法告知 Laravel 如何加载它们。

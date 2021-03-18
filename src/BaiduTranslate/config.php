@@ -8,7 +8,7 @@
 
 
 return [
-    'appid' =>  env('BAIDU_APPID'),
-    'key' =>  env('BAIDU_KEY'),
-    'str' =>  env('BAIDU_STR'),
+    'appid' => env('BAIDU_APPID'),
+    'key'   => env('BAIDU_KEY'),
+    'str'   => env('BAIDU_STR'),
 ];

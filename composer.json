@@ -19,8 +19,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Large\\Zhengdada\\ServiceProvider\\BaiduTranslateServiceProvider",
-                "Large\\Zhengdada\\ServiceProvider\\ChangeLangServiceProvider"
+                "Large\\Zhengdada\\ServiceProvider\\BaiduTranslateServiceProvider"
             ]
         }
     }
