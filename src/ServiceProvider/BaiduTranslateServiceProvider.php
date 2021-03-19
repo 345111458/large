@@ -85,7 +85,6 @@ class BaiduTranslateServiceProvider extends ServiceProvider
 
     }
 
-
     protected function routePath()
     {
         return __DIR__.'/../routes/large.php';
