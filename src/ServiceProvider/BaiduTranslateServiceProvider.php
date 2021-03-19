@@ -24,6 +24,14 @@ class BaiduTranslateServiceProvider extends ServiceProvider
         });
         $this->app->alias(BaiduTranslate::class, 'baidu');
 
+        //注册路由
+        if (file_exists($routes = $this->routePath())){
+            $this->loadRoutesFrom($routes);
+        }
+        if (file_exists($routes = base_path('routes/large.php'))) {
+            $this->loadRoutesFrom($routes);
+        }
+
         // $this->mergeConfigFrom(dirname(__DIR__) . '/BaiduTranslate/config.php', 'services');// 感觉没有什么用
         // $configPath = dirname(__DIR__) . '/BaiduTranslate/config.php';
         // $this->mergeConfigFrom($configPath, 'services');
@@ -69,5 +77,34 @@ class BaiduTranslateServiceProvider extends ServiceProvider
 //        }
 
     }
+
+
+    protected function routePath()
+    {
+        return __DIR__ . '/../routes/large.php';
+    }
+
+    protected function resourcesPath()
+    {
+        return __DIR__ . '/../resouects/';
+    }
+
+    protected function configPath()
+    {
+        return __DIR__ . '/../config/';
+    }
+
+    protected function langPath()
+    {
+        return $this->resourcesPath() . 'lang/';
+    }
+
+    protected function viewPath()
+    {
+        return $this->resourcesPath() . 'views/';
+    }
+
+
+
 
 }
