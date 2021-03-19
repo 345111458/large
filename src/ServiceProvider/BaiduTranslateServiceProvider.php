@@ -24,13 +24,23 @@ class BaiduTranslateServiceProvider extends ServiceProvider
         });
         $this->app->alias(BaiduTranslate::class, 'baidu');
 
-        //注册路由
-        if (file_exists($routes = $this->routePath())){
+        /**
+         * 注册路由
+         * Perform post-registration booting of services.
+         * 如果扩展包包含路由，可以使用 loadRoutesFrom 方法加载它们
+         */
+        if (file_exists($routes = $this->routePath())) {
             $this->loadRoutesFrom($routes);
         }
+        // 注册Route目录下的large.php文件为路由
         if (file_exists($routes = base_path('routes/large.php'))) {
             $this->loadRoutesFrom($routes);
         }
+
+        //注册 resources 视图文件
+        $this->loadViewsFrom($this->viewPath(), 'large');
+        // 注册视图文件里的 语言文件
+        $this->loadTranslationsFrom(__DIR__.'/path/to/translations', 'large');
 
         // $this->mergeConfigFrom(dirname(__DIR__) . '/BaiduTranslate/config.php', 'services');// 感觉没有什么用
         // $configPath = dirname(__DIR__) . '/BaiduTranslate/config.php';
@@ -47,20 +57,18 @@ class BaiduTranslateServiceProvider extends ServiceProvider
         // print_r($this->app['config']->get('services'));
         // 发布配置文件
         // 可以查看文档： https://xueyuanjun.com/post/19515.html#toc_2
-        $this->publishes([
-            dirname(__DIR__).'/BaiduTranslate/config.php' => config_path('baidu_translate.php'), // 要创建配置文件的文件
-        ], 'config');
+        if ($this->app instanceof LaravelApplication && $this->app->runningInConsole()) {
+            $this->publishes([$this->configPath() => config_path('baidu_config.php')], 'baidu-config');
+            $this->publishes([$this->routePath() => base_path('routes/large.php')], 'large-route');
+
+            $this->publishes([
+                                 $this->langPath() => resource_path('lang/vendor/large'),
+                                 $this->viewPath() => resource_path('views/vendor/large'),
+                             ], "large-resources");
+        }
 
 
-        /**
-         * Perform post-registration booting of services.
-         * 如果扩展包包含路由，可以使用 loadRoutesFrom 方法加载它们
-         * @return void
-         */
-        $this->loadRoutesFrom(dirname(__DIR__).'/Routes/test.php');
-
-
-        //如果你的扩展包包含数据库迁移，可以使用 loadMigrationsFrom 方法告知 Laravel 如何加载它们。
+        // 如果你的扩展包包含数据库迁移，可以使用 loadMigrationsFrom 方法告知 Laravel 如何加载它们。
         // loadMigrationsFrom 方法接收扩展包迁移的路径作为其唯一参数：
         // $this->loadMigrationsFrom(__DIR__.'/path/to/migrations');
 
@@ -68,43 +76,40 @@ class BaiduTranslateServiceProvider extends ServiceProvider
         // 要在 Laravel 中注册扩展包视图，需要告诉 Laravel 视图在哪，可以使用服务提供者的 loadViewsFrom 方法
         // $this->loadViewsFrom(__DIR__.'/path/to/views', 'courier');
 
-
         // 注册扩展包的 Artisan 命令
-//        if ($this->app->runningInConsole()) {
-//            $this->commands([
-//                JWTSecretGenerate::class,
-//            ]);
-//        }
+        // if ($this->app->runningInConsole()) {
+        //    $this->commands([
+        //        JWTSecretGenerate::class,
+        //    ]);
+        // }
 
     }
 
 
     protected function routePath()
     {
-        return __DIR__ . '/../routes/large.php';
+        return __DIR__.'/../routes/large.php';
     }
 
     protected function resourcesPath()
     {
-        return __DIR__ . '/../resouects/';
+        return __DIR__.'/../resouects/';
     }
 
     protected function configPath()
     {
-        return __DIR__ . '/../config/';
+        return __DIR__.'/../config/';
     }
 
     protected function langPath()
     {
-        return $this->resourcesPath() . 'lang/';
+        return $this->resourcesPath().'lang/';
     }
 
     protected function viewPath()
     {
-        return $this->resourcesPath() . 'views/';
+        return $this->resourcesPath().'views/';
     }
-
-
 
 
 }

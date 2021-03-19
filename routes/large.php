@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Large\Zhengdada\Controllers\TestController;
+
 
 
 Route::get('test2', function (){
@@ -17,6 +19,10 @@ Route::get('lang/{lang}', function($lang){
     }
     return redirect()->back();
 });
+
+
+Route::get('hhhh', 'TestController@index')->name('hhhh');
+
 
 
 ?>
