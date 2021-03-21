@@ -60,6 +60,7 @@ class BaiduTranslateServiceProvider extends ServiceProvider
         // if ($this->app instanceof LaravelApplication && $this->app->runningInConsole()) {
         if ($this->app->runningInConsole()) {
             $this->publishes([$this->configPath() => base_path('config')], 'baidu-config');
+
             $this->publishes([$this->routePath() => base_path('routes/large.php')], 'large-route');
 
             $this->publishes([
