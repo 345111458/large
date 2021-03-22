@@ -51,17 +51,21 @@ abstract class LangTranslateCommand extends Command
      */
     public function handle()
     {
+        $lang = $this->argument('lang');
+
         if (!$this->verifyType()){
-            $this->error('type: ' . 0);
+            $this->error('type: ' . 0 . $lang);
+            // \Log::info(now() . 0 . $lang);
             return false;
         }
 
-        if (!$lang = $this->argument('lang')) {
+        if (!$lang) {
             \Cache::put('type', 0);
             \Cache::put('langTranslate', null);
             $this->error('lang: null');
             return false;
         }
+
         $data = \Cache::remember('langTranslate', $this->setTtl(), function () {
 
             return include(resource_path('lang/test/').'zh.php');
@@ -70,6 +74,7 @@ abstract class LangTranslateCommand extends Command
         if (count($data) > 0) {
             foreach ($data as $k => $v) {
                 $data = \Cache::get('langTranslate');
+                $this->info($data[$k]);
                 unset($data[$k]);
                 \Cache::put('langTranslate', $data);
                 dispatch(new LangTranslateJob([$k => $v], $lang));

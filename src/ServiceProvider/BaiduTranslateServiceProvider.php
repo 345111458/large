@@ -57,15 +57,15 @@ class BaiduTranslateServiceProvider extends ServiceProvider
         // print_r($this->app['config']->get('services'));
         // 发布配置文件
         // 可以查看文档： https://xueyuanjun.com/post/19515.html#toc_2
-        // if ($this->app instanceof LaravelApplication && $this->app->runningInConsole()) {
         if ($this->app->runningInConsole()) {
-            $this->publishes([$this->configPath() => base_path('config')], 'baidu-config');
-
+            $this->publishes([$this->baidu_config() => config_path('baidu_config.php')], 'baidu-config');
+            $this->publishes([$this->lang() => base_path('lang.sh')], 'lang-config');
             $this->publishes([$this->routePath() => base_path('routes/large.php')], 'large-route');
+            $this->publishes([$this->publicPath() => base_path('public/')], 'public-static');
 
             $this->publishes([
-                                 $this->langPath() => resource_path('lang/vendor/large'),
-                                 $this->viewPath() => resource_path('views/vendor/large'),
+                                 $this->langPath() => resource_path('lang/vendor'),
+                                 $this->viewPath() => resource_path('views/vendor'),
                              ], "large-resources");
         }
 
@@ -87,6 +87,11 @@ class BaiduTranslateServiceProvider extends ServiceProvider
 
     }
 
+    protected function publicPath()
+    {
+        return __DIR__.'/../../public/';
+    }
+
     protected function routePath()
     {
         return __DIR__.'/../../routes/large.php';
@@ -100,6 +105,16 @@ class BaiduTranslateServiceProvider extends ServiceProvider
     protected function configPath()
     {
         return __DIR__.'/../../config/';
+    }
+
+    protected function lang()
+    {
+        return $this->configPath().'lang.sh';
+    }
+
+    protected function baidu_config()
+    {
+        return $this->configPath().'baidu_config.php';
     }
 
     protected function langPath()

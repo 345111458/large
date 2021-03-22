@@ -219,20 +219,5 @@ $res = Functions::reflectionMethod($class, $method, ...$param)
 ## 结束
 
 
-## 模板替换语言变量 LanguageReplace 用法
-```
-引入 LanguageReplace
-use Large\Zhengdada\Regulars\LanguageReplace;
-
-Route::get('test', function () {
-    $url        = resource_path().'/views/test/';
-    $fileName   = 'index.blade.php';
-    $langPrefix = 'REGISTER_';
-
-    $lang = new LanguageReplace($url, $fileName, $langPrefix);
-    $lang->replace();
-});
-
-```
 
 MIT

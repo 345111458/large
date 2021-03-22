@@ -43,11 +43,12 @@ class LanguageReplace
         $file_data = file_get_contents($file_path);
         # 正则规则
         $rules = '/>([\s\S]*?)</';
+        // $rules = '/<[^>]+>/';
         # 把要替换的内容放这里替换
         $content = preg_replace_callback($rules, function ($str) use ($pinyin) { // $aa 是匹配到的内容
             // 语言包前缀
             $newKey = $this->langPrefix;
-            $str[1] = str_replace("\n","",$str[1]);
+            // $str[1] = str_replace("\n","",$str[1]);
             $str[1] = trim($str[1]);
             // 把汉字转换成拼音首字母
             $result = $pinyin->abbr($str[1], PINYIN_KEEP_ENGLISH);

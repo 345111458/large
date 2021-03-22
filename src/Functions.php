@@ -22,6 +22,22 @@ class Functions
         return (new static)->{$method}(...$parameters);
     }
 
+
+    protected function dirTree($directory, $dir_name = '')
+    {
+        static $arr_file;
+        $mydir = dir($directory);
+        while ($file = $mydir->read()) {
+            if ((is_dir("$directory/$file")) and ($file != ".") and ($file != "..")) {
+                self::dirTree("$directory/$file", "$dir_name/$file");
+            } else if (($file != ".") and ($file != "..")) {
+                $arr_file[] = "$dir_name/$file";
+            }
+        }
+        $mydir->close();
+        return $arr_file;
+    }
+
     /***
      * 判断文件大小
      * @param $fiel 文件目录，
